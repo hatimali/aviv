@@ -22,6 +22,15 @@ class RetrieveListings:
         return listings
 
 
+class RetrieveListingPrices:
+    def __init__(self, listing_repository: ListingRepository):
+        self.listing_repository = listing_repository
+
+    def perform(self, id_: int) -> List[Dict]:
+        listings = self.listing_repository.get_listing_prices(id_)
+        return listings
+
+
 class UpdateListing:
     def __init__(self, listing_repository: ListingRepository):
         self.listing_repository = listing_repository

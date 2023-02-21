@@ -18,5 +18,9 @@ class ListingRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def get_listing_prices(self, id_: int) -> List[Dict]:
+        pass
+
+    @abc.abstractmethod
     def update(self, id_: int, listing: ListingEntity) -> Dict:
         pass

@@ -12,11 +12,11 @@ class TestPersistListing:
     def listing_entity(self) -> ListingEntity:
         listing_entity = (
             ListingFactory()
-            .with_name("Mikhail Schmiedt")
+            .with_name("Hatim Ali")
             .with_description("description")
             .with_building_type("APARTMENT")
             .with_rooms_count(6)
-            .with_bedrooms_count(2)
+            .with_bedrooms_count(3)
             .with_surface_area_m2(167)
             .with_postal_address(
                 PostalAddressFactory()
@@ -42,7 +42,7 @@ class TestPersistListing:
         )
 
         assert persisted_listing_dict["id"] == 1
-        assert persisted_listing_dict["name"] == "Mikhail Schmiedt"
+        assert persisted_listing_dict["name"] == "Hatim Ali"
         assert persisted_listing_dict["postal_address"] == {
             "street_address": "Johan-Ernst-Ring 7",
             "postal_code": "21810",
@@ -54,7 +54,7 @@ class TestPersistListing:
         assert persisted_listing_dict["latest_price_eur"] == 720000.0
         assert persisted_listing_dict["surface_area_m2"] == 167
         assert persisted_listing_dict["rooms_count"] == 6
-        assert persisted_listing_dict["bedrooms_count"] == 2
+        assert persisted_listing_dict["bedrooms_count"] == 3
         assert persisted_listing_dict["contact_phone_number"] == ""
         assert persisted_listing_dict["created_date"] == "2023-01-18T08:50:03.761691"
         assert persisted_listing_dict["updated_date"] == "2023-01-18T08:50:03.761691"

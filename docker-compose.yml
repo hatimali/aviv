@@ -28,39 +28,6 @@ services:
       PGUSER: listing
       PGPASSWORD: listing
 
-  typescript-serverless:
-    build:
-      context: typescript-serverless
-      args:
-        USER_ID: ${USER_ID:-1000}
-        GROUP_ID: ${GROUP_ID:-1000}
-    labels:
-      - aviv-technical-test
-    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
-    volumes:
-      - ./typescript-serverless:/home/listingapi/app:rw
-      - /home/listingapi/app/node_modules
-      - ./schemas:/home/listingapi/schemas:rw
-    command: ["npm", "run", "watch"]
-    ports:
-      - "8383:3000"
-    depends_on:
-      - db
-    environment:
-      PGHOST: db
-      PGDATABASE: listing
-      PGUSER: listing
-      PGPASSWORD: listing
-
-  dotnet:
-    build: c#-dotnet
-    labels:
-      - aviv-technical-test
-    ports:
-      - 8686:80
-    depends_on:
-      - db
-
   db:
     image: "mdillon/postgis:11-alpine"
     labels:

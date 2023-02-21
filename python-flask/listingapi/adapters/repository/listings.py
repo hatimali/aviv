@@ -30,10 +30,18 @@ class SqlAlchemyListingRepository(ListingRepository):
         ]
         return listings
 
+    def get_listing_prices(self, id_: int) -> List[Dict]:
+        listing_model = self.db_session.get(ListingModel, id_)
+        if listing_model is None:
+            raise ListingNotFoundException
+        listing = ListingMapper.from_model_to_dict(listing_model)
+        return listing
+
     def update(self, id_: int, listing: ListingEntity) -> Dict:
         existing_listing = self.db_session.get(ListingModel, id_)
         if existing_listing is None:
             raise ListingNotFoundException
+
         self.db_session.delete(existing_listing)
 
         listing_model = ListingMapper.from_entity_to_model(listing)

@@ -44,9 +44,13 @@ def put_listing(id_: int) -> Tuple[Response, int]:
 @app.route("/listings/<int:id_>/prices", methods=["GET"])
 def get_price_history(id_: int) -> Tuple[Response, int]:
     """Get price history."""
+    """ Implement a new endpoint that will return the price changes for a given listing over time."""
+
+    listings_data = registry.retrieve_listing_prices.perform(id_)
     # TODO: implement this
     mock_response = [
         {"price_eur": 100000, "created_date": "2023-01-12T09:23:36Z"},
         {"price_eur": 150000, "created_date": "2023-01-17T08:17:32Z"},
     ]
-    return jsonify(mock_response), 200
+
+    return jsonify(listings_data), 200
