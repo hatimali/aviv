@@ -10,7 +10,9 @@ from listingapi.domain.usecases.listings import (
     PersistListing,
     RetrieveListings,
     UpdateListing,
+    UpdateListingPrice,
     RetrieveListingPrices,
+    DeleteListing
 )
 
 
@@ -40,4 +42,6 @@ sql_alchemy_listing_repository = SqlAlchemyListingRepository(db_session)
 persist_listing = PersistListing(sql_alchemy_listing_repository)
 retrieve_listings = RetrieveListings(sql_alchemy_listing_repository)
 update_listing = UpdateListing(sql_alchemy_listing_repository)
+update_listing_price = UpdateListingPrice(sql_alchemy_listing_repository)
 retrieve_listing_prices = RetrieveListingPrices(sql_alchemy_listing_repository)
+delete_listing = DeleteListing(sql_alchemy_listing_repository)

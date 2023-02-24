@@ -41,3 +41,13 @@ class ListingModel(Base):
 
     # contact
     contact_phone_number: Optional[str] = Column(String, nullable=True, default=None)
+
+
+class ListingPriceModel(Base):
+    __tablename__ = "pricing"
+    id: int = Column(Integer, primary_key=True, autoincrement=True)
+    created_date: datetime = Column(
+        DateTime, default=lambda: datetime.utcnow(), nullable=False
+    )
+    listing_id: int = Column(Integer, nullable=False)
+    price: float = Column(Float, nullable=False)

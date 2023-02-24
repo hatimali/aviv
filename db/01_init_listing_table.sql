@@ -18,3 +18,11 @@ CREATE TABLE IF NOT EXISTS public.listing
     created_date         timestamp,
     updated_date         timestamp
 );
+
+CREATE TABLE IF NOT EXISTS public.pricing
+(
+    id                   serial           primary key,
+    created_date         timestamp        not null default current_timestamp,
+    listing_id           integer          not null,
+    price                double precision not null
+);

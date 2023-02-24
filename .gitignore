@@ -11,3 +11,4 @@ tests/pricemap.unittests/bin/*
 
 env
 .idea
+venv

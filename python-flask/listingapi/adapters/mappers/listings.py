@@ -1,5 +1,5 @@
-from listingapi.adapters.repository.models.listings import ListingModel
-from listingapi.domain.entities.listings import ListingEntity
+from listingapi.adapters.repository.models.listings import ListingModel, ListingPriceModel
+from listingapi.domain.entities.listings import ListingEntity, ListingPriceEntity
 
 
 class ListingMapper:
@@ -43,3 +43,24 @@ class ListingMapper:
             "updated_date": listing.updated_date.isoformat(),
         }
         return listing_dict
+
+
+class ListingPriceMapper:
+    @staticmethod
+    def from_entity_to_model(obj: ListingPriceEntity) -> ListingPriceModel:
+        listing_model = ListingPriceModel(
+            listing_id=obj.listing_id,
+            price=obj.price
+        )
+        return listing_model
+
+    @staticmethod
+    def from_model_to_dict(obj: ListingPriceModel) -> dict:
+        listing_dict = {
+            "id": obj.id,
+            "listing_id": obj.listing_id,
+            "price": obj.price,
+            "created_date": obj.created_date.isoformat(),
+        }
+        return listing_dict
+

@@ -20,3 +20,8 @@ class ListingEntity(BaseModel):
     rooms_count: int
     bedrooms_count: int
     contact_phone_number: Optional[str]
+
+
+class ListingPriceEntity(BaseModel):
+    listing_id: int
+    price: int

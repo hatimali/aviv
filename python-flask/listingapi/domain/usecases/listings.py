@@ -1,6 +1,6 @@
 from typing import Dict, List
 
-from listingapi.domain.entities.listings import ListingEntity
+from listingapi.domain.entities.listings import ListingEntity, ListingPriceEntity
 from listingapi.domain.ports.repository.listings import ListingRepository
 
 
@@ -27,8 +27,8 @@ class RetrieveListingPrices:
         self.listing_repository = listing_repository
 
     def perform(self, id_: int) -> List[Dict]:
-        listings = self.listing_repository.get_listing_prices(id_)
-        return listings
+        listing_price_dict = self.listing_repository.get_price(id_)
+        return listing_price_dict
 
 
 class UpdateListing:
@@ -37,4 +37,22 @@ class UpdateListing:
 
     def perform(self, id_: int, listing: ListingEntity) -> Dict:
         listing_dict = self.listing_repository.update(id_, listing)
+        return listing_dict
+
+
+class UpdateListingPrice:
+    def __init__(self, listing_repository: ListingRepository) -> None:
+        self.listing_repository = listing_repository
+
+    def perform(self, obj: ListingPriceEntity) -> Dict:
+        listing_price_dict = self.listing_repository.update_price(obj)
+        return listing_price_dict
+
+
+class DeleteListing:
+    def __init__(self, listing_repository: ListingRepository):
+        self.listing_repository = listing_repository
+
+    def perform(self, listing: ListingEntity) -> Dict:
+        listing_dict = self.listing_repository.delete(listing)
         return listing_dict
